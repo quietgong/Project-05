@@ -19,20 +19,13 @@ int xy[2];
 
 int main()
 {
+	int menu;
 	while (1)
 	{
-		showClickPositionInConsole();
-		gotoxy(xy[0], xy[1]+1);
-		printf("□");
-		Input_Data();
+		Print_Menu();
+		menu = Menu_Cursor();
 	}
-	/*
-	int menu;
-	system("mode con cols=120 lines=40"); //콘솔창 크기를 조절하는 명령어 (cols=가로, lines=세로)
-	Print_Menu();
-	menu=Menu_Cursor();
-	return 0;
-	*/
+	return 0;	
 }
 void gotoxy(int x, int y)
 {
@@ -41,11 +34,27 @@ void gotoxy(int x, int y)
 }
 void Print_Menu()
 {
-	gotoxy(60, 20); printf("그 림 판");
-	gotoxy(60, 21); printf("사각 그림판");
-	gotoxy(60, 22); printf("바둑판 그림판");
-	gotoxy(60, 23); printf("원형 그림판");
-	gotoxy(60, 24); printf("종료");
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("Start_Menu.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 0, 0, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY);
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
 }
 //메뉴에서 커서를 움직이는 함수
 int Menu_Cursor() 
@@ -118,9 +127,24 @@ void Print_Circle_Board()
 {
 
 }
-void Print_Board_Menu()
+void Print_Board_Menu() //그림판 메뉴 출력 함수
 {
-
+	for (int i = 0; i < 40; i++)
+		printf("=");
+	printf("※원하는 기능을 키보드로 입력해 주세요※");
+	for (int i = 0; i < 40; i++)
+		printf("=");
+	gotoxy(41, 2);
+	printf("1.□\t2.■\t3.△\t4.▲\t5.ㅡ\n");
+	gotoxy(41, 3);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4); printf("6.빨강\t");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1); printf("7.파랑\t");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); printf("8.흰\t");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); printf("9.검정\t");
+	printf("0.종료\n");
+	gotoxy(1, 4);
+	for (int i = 0; i < 120;i++)
+		printf("=");
 }
 void Print_HowToUse()
 {
@@ -133,5 +157,9 @@ void Input_Data()
 }
 int Select_Menu()
 {
-
+	char key;
+	key = getchar();
+	if (key == 80)
+		printf("□");
 }
+
