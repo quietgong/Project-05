@@ -10,27 +10,72 @@ void Print_Menu(); //메뉴 출력 함수
 void Menu_Cursor(); //메뉴 커서 움직이는 함수
 int Move_Cursor_Key(); //메뉴 커서의 y값을 변경하는 함수
 void Print_Board(); //그림판 출력 함수
-void Print_Board_Menu(); //그림판 메뉴 출력 함수
 void showClickPositionInConsole(); //마우스 입력시 해당 좌표를 전역변수 xy에 저장하는 함수
-int Select_Menu(); //메뉴를 선택하는 함수
+void Print_Board_Up();
+void Print_Board_Down();
+void Print_Board_Left();
+void Print_Board_Right();
 
 int xy[2];
-int x = 220, y = 355; //455-355=100
+int x = 320, y = 355; //455-355=100
 int main()
 {
 	int select;
 	char key;
-	system("mode con cols=102 lines=38"); //815*612
+	system("mode con cols=100 lines=38"); //815*612
 	Print_Menu();
 	select = Move_Cursor_Key();
 	switch (select)
 	{
 	case 355:
 		system("cls");
-		Print_Board();
+		//Print_Board();
 		while (1)
 		{
-			showClickPositionInConsole();
+			Print_Board_Up();
+			Print_Board_Down();
+			Print_Board_Left();
+			Print_Board_Right();
+
+			key = getch();
+			switch (key)
+			{
+			case 49:
+			{
+				showClickPositionInConsole();
+				gotoxy(xy[0], xy[1] + 1);
+				printf("□");
+				break;
+			}
+			case 50:
+			{
+				showClickPositionInConsole();
+				gotoxy(xy[0], xy[1] + 1);
+				printf("△");
+				break;
+			}
+			case 51:
+			{
+				showClickPositionInConsole();
+				gotoxy(xy[0], xy[1] + 1);
+				printf("○");
+				break;
+			}
+			case 52:
+			{
+				showClickPositionInConsole();
+				gotoxy(xy[0], xy[1] + 1);
+				printf("☆");
+				break;
+			}
+			case 53:
+			{
+				showClickPositionInConsole();
+				gotoxy(xy[0], xy[1] + 1);
+				printf("◇");
+				break;
+			}
+			}
 		}
 		break;
 	case 455:
@@ -67,7 +112,6 @@ void Print_Menu()
 	DeleteDC(hMemDC);
 
 	ReleaseDC(myconsole, mydc);
-
 }
 
 //메뉴에서 커서를 움직이는 함수
@@ -186,15 +230,102 @@ void Print_Board()
 
 	ReleaseDC(myconsole, mydc);
 }
-void Print_Board_Menu()
-{
 
+void Print_Board_Down()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("board_down.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 153, 545, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY);
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
 }
-void Print_HowToUse()
+void Print_Board_Up()
 {
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
 
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("board_up.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 153, 0, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY);
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
 }
-int Select_Menu()
-{
 
+void Print_Board_Left()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("board_left.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 0, 0, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY);
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
+}
+
+void Print_Board_Right()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("board_right.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 737, 93, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY);
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
 }
