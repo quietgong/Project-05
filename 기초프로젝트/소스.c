@@ -9,15 +9,16 @@ void gotoxy(int x, int y); //gotoxy함수
 void Print_Menu(); //메뉴 출력 함수
 void Menu_Cursor(); //메뉴 커서 움직이는 함수
 int Move_Cursor_Key(); //메뉴 커서의 y값을 변경하는 함수
-void Print_Board(); //그림판 출력 함수
 void showClickPositionInConsole(); //마우스 입력시 해당 좌표를 전역변수 xy에 저장하는 함수
 void Print_Board_Up();
 void Print_Board_Down();
 void Print_Board_Left();
 void Print_Board_Right();
+void Input_Data();
 
 int xy[2];
 int x = 320, y = 355; //455-355=100
+
 int main()
 {
 	int select;
@@ -42,9 +43,24 @@ int main()
 			{
 			case 49:
 			{
-				showClickPositionInConsole();
-				gotoxy(xy[0], xy[1] + 1);
-				printf("□");
+				while (1) {
+					
+					Print_Board_Up();
+					Print_Board_Down();
+					Print_Board_Left();
+					Print_Board_Right();
+
+					showClickPositionInConsole();
+					gotoxy(xy[0], xy[1] + 1);
+					Input_Data();
+					printf("□");
+					if (_kbhit())
+					{
+						
+						if (_getch() == 13)
+							break;
+					}
+				}
 				break;
 			}
 			case 50:
@@ -75,6 +91,15 @@ int main()
 				printf("◇");
 				break;
 			}
+			case 32:
+			{
+				showClickPositionInConsole();
+				gotoxy(xy[0], xy[1] + 1);
+				printf(" ");
+				break;
+			}
+			case 13:
+				return 0;
 			}
 		}
 		break;
@@ -206,30 +231,6 @@ void showClickPositionInConsole()
 		}
 	}
 }
-void Print_Board()
-{
-	int num = 0;
-	//Get a console handle
-	HWND myconsole = GetConsoleWindow();
-	//Get a handle to device context
-	HDC mydc = GetDC(myconsole);
-
-	HBITMAP hImage, hOldBitmap;
-	HDC hMemDC = CreateCompatibleDC(mydc);
-	// 이미지 로드
-
-	hImage = (HBITMAP)LoadImage(NULL, TEXT("board.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-
-	//    이미지 출력 부분
-	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
-	BitBlt(mydc, 0, 0, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY);
-	//각종 메모리 해제
-	SelectObject(hMemDC, hOldBitmap);
-	DeleteObject(hImage);
-	DeleteDC(hMemDC);
-
-	ReleaseDC(myconsole, mydc);
-}
 
 void Print_Board_Down()
 {
@@ -328,4 +329,21 @@ void Print_Board_Right()
 	DeleteDC(hMemDC);
 
 	ReleaseDC(myconsole, mydc);
+}
+
+void How_To_Use()
+{
+
+}
+
+void Input_Data()
+{
+	int i;
+	FILE* fp = fopen("result.txt", "a");
+	for (i = 0; i < xy[1]; i++)
+		fputs("\n", fp);
+	for (i = 0; i < xy[0]; i++)
+		fputs(" ", fp);
+
+	fputs("□", fp);
 }
