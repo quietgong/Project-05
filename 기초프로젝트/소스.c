@@ -5,6 +5,7 @@
 #include <string.h>
 #pragma warning(disable:4996)
 
+
 void gotoxy(int x, int y); //gotoxy함수
 void Print_Menu(); //메뉴 출력 함수
 void Menu_Cursor(); //메뉴 커서 움직이는 함수
@@ -15,10 +16,12 @@ void Print_Board_Down();
 void Print_Board_Left();
 void Print_Board_Right();
 void How_To_Use();
+void Select_Color();
+
 
 int xy[2] = { 0 };
 int x = 320, y = 355; //455-355=100
-
+int color = 0;
 int main()
 {
 	int select;
@@ -50,8 +53,11 @@ int main()
 					Print_Board_Right();
 
 					showClickPositionInConsole();
+					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
-					printf("□");
+
+					printf("\x1b[%dm""■",color);
+
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -100,8 +106,9 @@ int main()
 					Print_Board_Right();
 
 					showClickPositionInConsole();
+					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
-					printf("△");
+					printf("\x1b[%dm""▲",color);
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -151,8 +158,9 @@ int main()
 					Print_Board_Right();
 
 					showClickPositionInConsole();
+					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
-					printf("○");
+					printf("\x1b[%dm""●",color);
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -201,8 +209,9 @@ int main()
 					Print_Board_Right();
 
 					showClickPositionInConsole();
+					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
-					printf("☆");
+					printf("\x1b[%dm""★",color);
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -251,8 +260,9 @@ int main()
 					Print_Board_Right();
 
 					showClickPositionInConsole();
+					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
-					printf("◇");
+					printf("\x1b[%dm""◆",color);
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -589,4 +599,49 @@ void How_To_Use()
 	DeleteDC(hMemDC);
 
 	ReleaseDC(myconsole, mydc);
+}
+
+void Select_Color()
+{
+
+	if (xy[0] == 41 && xy[1] == 1 || xy[0] == 41 && xy[1] == 2 ||
+		xy[0] == 42 && xy[1] == 1 || xy[0] == 42 && xy[1] == 2 ||
+		xy[0] == 43 && xy[1] == 1 || xy[0] == 43 && xy[1] == 2 ||
+		xy[0] == 44 && xy[1] == 1 || xy[0] == 44 && xy[1] == 2)
+		color = 34;
+	if (xy[0] == 46 && xy[1] == 1 || xy[0] == 46 && xy[1] == 2 ||
+		xy[0] == 47 && xy[1] == 1 || xy[0] == 47 && xy[1] == 2 ||
+		xy[0] == 48 && xy[1] == 1 || xy[0] == 48 && xy[1] == 2 ||
+		xy[0] == 49 && xy[1] == 1 || xy[0] == 49 && xy[1] == 2)
+		color = 32;
+	if (xy[0] == 51 && xy[1] == 1 || xy[0] == 51 && xy[1] == 2 ||
+		xy[0] == 52 && xy[1] == 1 || xy[0] == 52 && xy[1] == 2 ||
+		xy[0] == 53 && xy[1] == 1 || xy[0] == 53 && xy[1] == 2 ||
+		xy[0] == 54 && xy[1] == 1 || xy[0] == 54 && xy[1] == 2)
+		color = 36;
+	if (xy[0] == 56 && xy[1] == 1 || xy[0] == 56 && xy[1] == 2 ||
+		xy[0] == 57 && xy[1] == 1 || xy[0] == 57 && xy[1] == 2 ||
+		xy[0] == 58 && xy[1] == 1 || xy[0] == 58 && xy[1] == 2 ||
+		xy[0] == 59 && xy[1] == 1 || xy[0] == 59 && xy[1] == 2)
+		color = 31;
+	if (xy[0] == 61 && xy[1] == 1 || xy[0] == 61 && xy[1] == 2 ||
+		xy[0] == 62 && xy[1] == 1 || xy[0] == 62 && xy[1] == 2 ||
+		xy[0] == 63 && xy[1] == 1 || xy[0] == 63 && xy[1] == 2 ||
+		xy[0] == 64 && xy[1] == 1 || xy[0] == 64 && xy[1] == 2)
+		color = 35;
+	if (xy[0] == 66 && xy[1] == 1 || xy[0] == 66 && xy[1] == 2 ||
+		xy[0] == 67 && xy[1] == 1 || xy[0] == 67 && xy[1] == 2 ||
+		xy[0] == 68 && xy[1] == 1 || xy[0] == 68 && xy[1] == 2 ||
+		xy[0] == 69 && xy[1] == 1 || xy[0] == 69 && xy[1] == 2)
+		color = 33;
+	if (xy[0] == 71 && xy[1] == 1 || xy[0] == 71 && xy[1] == 2 ||
+		xy[0] == 72 && xy[1] == 1 || xy[0] == 72 && xy[1] == 2 ||
+		xy[0] == 73 && xy[1] == 1 || xy[0] == 73 && xy[1] == 2 ||
+		xy[0] == 74 && xy[1] == 1 || xy[0] == 74 && xy[1] == 2)
+		color = 37;
+	if (xy[0] == 76 && xy[1] == 1 || xy[0] == 76 && xy[1] == 2 ||
+		xy[0] == 77 && xy[1] == 1 || xy[0] == 77 && xy[1] == 2 ||
+		xy[0] == 78 && xy[1] == 1 || xy[0] == 78 && xy[1] == 2 ||
+		xy[0] == 79 && xy[1] == 1 || xy[0] == 79 && xy[1] == 2)
+		color = 0;
 }
