@@ -16,7 +16,7 @@ void Print_Board_Left();
 void Print_Board_Right();
 void Input_Data();
 
-int xy[2];
+int xy[2] = { 0 };
 int x = 320, y = 355; //455-355=100
 
 int main()
@@ -54,10 +54,10 @@ int main()
 					gotoxy(xy[0], xy[1] + 1);
 					Input_Data();
 					printf("¡à");
-					if (_kbhit())
+					if (kbhit())
 					{
-						
-						if (_getch() == 13)
+						key = getch();
+						if (key == 32)
 							break;
 					}
 				}
@@ -65,30 +65,90 @@ int main()
 			}
 			case 50:
 			{
-				showClickPositionInConsole();
-				gotoxy(xy[0], xy[1] + 1);
-				printf("¡â");
+				while (1) {
+
+					Print_Board_Up();
+					Print_Board_Down();
+					Print_Board_Left();
+					Print_Board_Right();
+
+					showClickPositionInConsole();
+					gotoxy(xy[0], xy[1] + 1);
+					Input_Data();
+					printf("¡â");
+					if (_kbhit())
+					{	
+						key = getch();
+						if (key == 32)
+							break;
+					}
+				}
 				break;
 			}
 			case 51:
 			{
-				showClickPositionInConsole();
-				gotoxy(xy[0], xy[1] + 1);
-				printf("¡Û");
+				while (1) {
+
+					Print_Board_Up();
+					Print_Board_Down();
+					Print_Board_Left();
+					Print_Board_Right();
+
+					showClickPositionInConsole();
+					gotoxy(xy[0], xy[1] + 1);
+					Input_Data();
+					printf("¡Û");
+					if (!_kbhit())
+					{
+						key = getch();
+						if (key == 32)
+							break;
+					}
+				}
 				break;
 			}
 			case 52:
 			{
-				showClickPositionInConsole();
-				gotoxy(xy[0], xy[1] + 1);
-				printf("¡Ù");
+				while (1) {
+
+					Print_Board_Up();
+					Print_Board_Down();
+					Print_Board_Left();
+					Print_Board_Right();
+
+					showClickPositionInConsole();
+					gotoxy(xy[0], xy[1] + 1);
+					Input_Data();
+					printf("¡Ù");
+					if (!_kbhit())
+					{
+						key = getch();
+						if (key == 32)
+							break;
+					}
+				}
 				break;
 			}
 			case 53:
 			{
-				showClickPositionInConsole();
-				gotoxy(xy[0], xy[1] + 1);
-				printf("¡Þ");
+				while (1) {
+
+					Print_Board_Up();
+					Print_Board_Down();
+					Print_Board_Left();
+					Print_Board_Right();
+
+					showClickPositionInConsole();
+					gotoxy(xy[0], xy[1] + 1);
+					Input_Data();
+					printf("¡Þ");
+					if (!_kbhit())
+					{
+						key = getch();
+						if (key == 32)
+							break;
+					}
+				}
 				break;
 			}
 			case 32:
@@ -331,18 +391,15 @@ void Print_Board_Right()
 	ReleaseDC(myconsole, mydc);
 }
 
-void How_To_Use()
-{
-
-}
 
 void Input_Data()
 {
 	int i;
 	FILE* fp = fopen("result.txt", "a");
-	for (i = 0; i < xy[1]; i++)
+	
+	for (i = 0; i < xy[1]-6; i++)
 		fputs("\n", fp);
-	for (i = 0; i < xy[0]; i++)
+	for (i = 0; i < xy[0]-22; i++)
 		fputs(" ", fp);
 
 	fputs("¡à", fp);
