@@ -75,7 +75,7 @@ int main()
 						{
 							How_To_Use();
 							key = getch();
-						} while (key != 32);
+						} while (key != 13);
 						system("cls");
 					}
 					if (xy[0] == 92 && xy[1] == 1 || xy[0] == 92 && xy[1] == 2 || xy[0] == 92 && xy[1] == 3 ||
@@ -126,7 +126,7 @@ int main()
 						{
 							How_To_Use();
 							key = getch();
-						} while (key != 32);
+						} while (key != 13);
 						system("cls");
 					}
 					if (xy[0] == 92 && xy[1] == 1 || xy[0] == 92 && xy[1] == 2 || xy[0] == 92 && xy[1] == 3 ||
@@ -178,7 +178,7 @@ int main()
 						{
 							How_To_Use();
 							key = getch();
-						} while (key != 32);
+						} while (key != 13);
 						system("cls");
 					}
 					if (xy[0] == 92 && xy[1] == 1 || xy[0] == 92 && xy[1] == 2 || xy[0] == 92 && xy[1] == 3 ||
@@ -229,7 +229,7 @@ int main()
 						{
 							How_To_Use();
 							key = getch();
-						} while (key != 32);
+						} while (key != 13);
 						system("cls");
 					}
 					if (xy[0] == 92 && xy[1] == 1 || xy[0] == 92 && xy[1] == 2 || xy[0] == 92 && xy[1] == 3 ||
@@ -280,7 +280,7 @@ int main()
 						{
 							How_To_Use();
 							key = getch();
-						} while (key != 32);
+						} while (key != 13);
 						system("cls");
 					}
 					if (xy[0] == 92 && xy[1] == 1 || xy[0] == 92 && xy[1] == 2 || xy[0] == 92 && xy[1] == 3 ||
@@ -323,7 +323,7 @@ int main()
 					{
 						How_To_Use();
 						key = getch();
-					} while (key != 32);
+					} while (key != 13);
 					system("cls");
 				}
 				if (xy[0] == 92 && xy[1] == 1 || xy[0] == 92 && xy[1] == 2 || xy[0] == 92 && xy[1] == 3 ||
