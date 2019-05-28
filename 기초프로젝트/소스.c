@@ -17,11 +17,19 @@ void Print_Board_Left();
 void Print_Board_Right();
 void How_To_Use();
 void Select_Color();
-
+void Blue_Select();
+void Green_Select();
+void Grey_Select();
+void Red_Select();
+void Yello_Select();
+void Purple_Select();
+void Ok_Select();
+void White_Select();
 
 int xy[2] = { 0 };
 int x = 320, y = 355; //455-355=100
 int color = 0;
+
 int main()
 {
 	int select;
@@ -48,16 +56,33 @@ int main()
 				while (1) {
 					
 					Print_Board_Up();
+					if (color == 34)
+						Blue_Select();
+					else if (color == 32)
+						Green_Select();
+					else if (color == 36)
+						Ok_Select();
+					else if (color == 31)
+						Red_Select();
+					else if (color == 35)
+						Purple_Select();
+					else if (color == 33)
+						Yello_Select();
+					else if (color == 37)
+						White_Select();
+					else if (color == 0)
+						Grey_Select();
 					Print_Board_Down();
 					Print_Board_Left();
 					Print_Board_Right();
 
 					showClickPositionInConsole();
 					Select_Color();
+					
 					gotoxy(xy[0], xy[1] + 1);
-
+					
 					printf("\x1b[%dm""■",color);
-
+					
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -101,6 +126,22 @@ int main()
 				while (1) {
 
 					Print_Board_Up();
+					if (color == 34)
+						Blue_Select();
+					else if (color == 32)
+						Green_Select();
+					else if (color == 36)
+						Ok_Select();
+					else if (color == 31)
+						Red_Select();
+					else if (color == 35)
+						Purple_Select();
+					else if (color == 33)
+						Yello_Select();
+					else if (color == 37)
+						White_Select();
+					else if (color == 0)
+						Grey_Select();
 					Print_Board_Down();
 					Print_Board_Left();
 					Print_Board_Right();
@@ -153,6 +194,22 @@ int main()
 				while (1) {
 
 					Print_Board_Up();
+					if (color == 34)
+						Blue_Select();
+					else if (color == 32)
+						Green_Select();
+					else if (color == 36)
+						Ok_Select();
+					else if (color == 31)
+						Red_Select();
+					else if (color == 35)
+						Purple_Select();
+					else if (color == 33)
+						Yello_Select();
+					else if (color == 37)
+						White_Select();
+					else if (color == 0)
+						Grey_Select();
 					Print_Board_Down();
 					Print_Board_Left();
 					Print_Board_Right();
@@ -204,6 +261,22 @@ int main()
 				while (1) {
 
 					Print_Board_Up();
+					if (color == 34)
+						Blue_Select();
+					else if (color == 32)
+						Green_Select();
+					else if (color == 36)
+						Ok_Select();
+					else if (color == 31)
+						Red_Select();
+					else if (color == 35)
+						Purple_Select();
+					else if (color == 33)
+						Yello_Select();
+					else if (color == 37)
+						White_Select();
+					else if (color == 0)
+						Grey_Select();
 					Print_Board_Down();
 					Print_Board_Left();
 					Print_Board_Right();
@@ -255,6 +328,22 @@ int main()
 				while (1) {
 
 					Print_Board_Up();
+					if (color == 34)
+						Blue_Select();
+					else if (color == 32)
+						Green_Select();
+					else if (color == 36)
+						Ok_Select();
+					else if (color == 31)
+						Red_Select();
+					else if (color == 35)
+						Purple_Select();
+					else if (color == 33)
+						Yello_Select();
+					else if (color == 37)
+						White_Select();
+					else if (color == 0)
+						Grey_Select();
 					Print_Board_Down();
 					Print_Board_Left();
 					Print_Board_Right();
@@ -351,6 +440,7 @@ int main()
 		return 0;
 	}
 }
+
 void gotoxy(int x, int y)
 {
 	COORD Pos = { x - 1, y - 1 };
@@ -449,6 +539,7 @@ int Move_Cursor_Key()
 	} while (key != 13);
 	return y;
 }
+
 void showClickPositionInConsole()
 {
 	COORD coord;
@@ -603,7 +694,6 @@ void How_To_Use()
 
 void Select_Color()
 {
-
 	if (xy[0] == 41 && xy[1] == 1 || xy[0] == 41 && xy[1] == 2 ||
 		xy[0] == 42 && xy[1] == 1 || xy[0] == 42 && xy[1] == 2 ||
 		xy[0] == 43 && xy[1] == 1 || xy[0] == 43 && xy[1] == 2 ||
@@ -644,4 +734,209 @@ void Select_Color()
 		xy[0] == 78 && xy[1] == 1 || xy[0] == 78 && xy[1] == 2 ||
 		xy[0] == 79 && xy[1] == 1 || xy[0] == 79 && xy[1] == 2)
 		color = 0;
+}
+
+void Blue_Select()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("blue.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 330, 50, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY); //40단위
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
+}
+
+void Green_Select()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("Green.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 370, 50, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY); //40단위
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
+}
+
+void Ok_Select()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("Ok.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 405, 50, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY); //40단위
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
+}
+void Red_Select()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("Red.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 445, 50, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY); //40단위
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
+}
+void Purple_Select()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("Purple.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 485, 50, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY); //40단위
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
+}
+void Yello_Select()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("Yello.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 520, 50, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY); //40단위
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
+}
+
+void White_Select()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("White.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 560, 50, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY); //40단위
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
+}
+
+void Grey_Select()
+{
+	int num = 0;
+	//Get a console handle
+	HWND myconsole = GetConsoleWindow();
+	//Get a handle to device context
+	HDC mydc = GetDC(myconsole);
+
+	HBITMAP hImage, hOldBitmap;
+	HDC hMemDC = CreateCompatibleDC(mydc);
+	// 이미지 로드
+
+	hImage = (HBITMAP)LoadImage(NULL, TEXT("Grey.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
+
+	//    이미지 출력 부분
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hImage);
+	BitBlt(mydc, 600, 50, 200 * 10, 200 * 20, hMemDC, 0, 0, SRCCOPY); //40단위
+
+	//각종 메모리 해제
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hImage);
+	DeleteDC(hMemDC);
+
+	ReleaseDC(myconsole, mydc);
 }
