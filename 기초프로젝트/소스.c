@@ -25,10 +25,12 @@ void Yello_Select();
 void Purple_Select();
 void Ok_Select();
 void White_Select();
+void Input_Data();
 
 int xy[2] = { 0 };
 int x = 320, y = 355; //455-355=100
 int color = 0;
+FILE* fp;
 
 int main()
 {
@@ -82,7 +84,7 @@ int main()
 					gotoxy(xy[0], xy[1] + 1);
 
 					printf("\x1b[%dm""¡á", color);
-
+					Input_Data(); fprintf(fp, " ¡á\n");
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -114,6 +116,7 @@ int main()
 						xy[0] == 100 && xy[1] == 1 || xy[0] == 100 && xy[1] == 2 || xy[0] == 100 && xy[1] == 3
 						)
 					{
+						fclose(fp);
 						return 0;
 					}
 					if (kbhit() == 50 || 51 || 52 || 53 || 32)
@@ -150,6 +153,8 @@ int main()
 					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
 					printf("\x1b[%dm""¡ã", color);
+					Input_Data(); fprintf(fp, " ¡ã\n");
+
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -181,6 +186,7 @@ int main()
 						xy[0] == 100 && xy[1] == 1 || xy[0] == 100 && xy[1] == 2 || xy[0] == 100 && xy[1] == 3
 						)
 					{
+						fclose(fp);
 						return 0;
 					}
 					if (kbhit() == 49 || 51 || 52 || 53 || 32)
@@ -218,6 +224,8 @@ int main()
 					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
 					printf("\x1b[%dm""¡Ü", color);
+					Input_Data(); fprintf(fp, " ¡Ü\n");
+
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -249,6 +257,7 @@ int main()
 						xy[0] == 100 && xy[1] == 1 || xy[0] == 100 && xy[1] == 2 || xy[0] == 100 && xy[1] == 3
 						)
 					{
+						fclose(fp);
 						return 0;
 					}
 					if (kbhit() == 49 || 50 || 52 || 53 || 32)
@@ -285,6 +294,8 @@ int main()
 					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
 					printf("\x1b[%dm""¡Ú", color);
+					Input_Data(); fprintf(fp, " ¡Ú\n");
+
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -316,6 +327,7 @@ int main()
 						xy[0] == 100 && xy[1] == 1 || xy[0] == 100 && xy[1] == 2 || xy[0] == 100 && xy[1] == 3
 						)
 					{
+						fclose(fp);
 						return 0;
 					}
 					if (kbhit() == 50 || 51 || 49 || 53 || 32)
@@ -352,6 +364,8 @@ int main()
 					Select_Color();
 					gotoxy(xy[0], xy[1] + 1);
 					printf("\x1b[%dm""¡ß", color);
+					Input_Data(); fprintf(fp, " ¡ß\n");
+
 					if (xy[0] == 82 && xy[1] == 1 || xy[0] == 82 && xy[1] == 2 || xy[0] == 82 && xy[1] == 3 ||
 						xy[0] == 83 && xy[1] == 1 || xy[0] == 83 && xy[1] == 2 || xy[0] == 83 && xy[1] == 3 ||
 						xy[0] == 84 && xy[1] == 1 || xy[0] == 84 && xy[1] == 2 || xy[0] == 84 && xy[1] == 3 ||
@@ -383,6 +397,7 @@ int main()
 						xy[0] == 100 && xy[1] == 1 || xy[0] == 100 && xy[1] == 2 || xy[0] == 100 && xy[1] == 3
 						)
 					{
+						fclose(fp);
 						return 0;
 					}
 					if (kbhit() == 50 || 51 || 52 || 49 || 32)
@@ -426,6 +441,7 @@ int main()
 					xy[0] == 100 && xy[1] == 1 || xy[0] == 100 && xy[1] == 2 || xy[0] == 100 && xy[1] == 3
 					)
 				{
+					fclose(fp);
 					return 0;
 				}
 
@@ -939,4 +955,14 @@ void Grey_Select()
 	DeleteDC(hMemDC);
 
 	ReleaseDC(myconsole, mydc);
+}
+
+void Input_Data()
+{
+	char x, y;
+	x = xy[0];
+	y = xy[1];
+
+	fp = fopen("result.txt", "a");
+	fprintf(fp, "%d %d", xy[0], xy[1]);
 }
